@@ -97,7 +97,9 @@ function Navbar(props) {
               sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" } }}
             >
               <img src={bookLogo} alt="" style={{ height: "40px" }} />
-              <Typography variant="h5">Edumi</Typography>
+              <Typography variant="h5" paddingLeft={2}>
+                Edumi
+              </Typography>
             </Typography>
 
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
