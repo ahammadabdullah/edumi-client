@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ClassCard = ({ item }) => {
-  console.log(item);
-  const { title, name, price, image, shortDescription, totalEnrollment } = item;
+  const { _id, title, name, price, image, shortDescription, totalEnrollment } =
+    item;
   return (
     <div className="w-[300px] mx-auto flex flex-col justify-between">
       <div>
@@ -19,7 +20,7 @@ const ClassCard = ({ item }) => {
       </div>
       <div className="flex justify-center">
         <button className="btn py-1 px-2 text-white bg-blue-700">
-          Enroll Now
+          <Link to={`/allclasses/${_id}`}>Enroll Now</Link>
         </button>
       </div>
     </div>

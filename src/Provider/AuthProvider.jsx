@@ -9,12 +9,14 @@ import {
 } from "firebase/auth";
 import auth from "../config/config.firebase";
 import axios from "axios";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const axiosPublic = useAxiosSecure();
   // google login
   const googleProvider = new GoogleAuthProvider();
   const googleLogin = () => {
@@ -41,24 +43,20 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
       const loggedUser = { email: userEmail };
       console.log(currentUser);
-      // const url = "https://community-food-share-server.vercel.app/jwt";
-      // if (currentUser) {
-      //   axios
-      //     .post(url, loggedUser, {
-      //       withCredentials: true,
-      //     })
-      //     .then((res) => console.log(res.data));
-      // } else {
-      //   axios
-      //     .post(
-      //       "https://community-food-share-server.vercel.app/logout",
-      //       loggedUser,
-      //       {
-      //         withCredentials: true,
-      //       }
-      //     )
-      //     .then((res) => console.log("cookie cleared", res.data));
-      // }
+      const url = "/jwt";
+      if (currentUser) {
+        axiosPublic
+          .post(url, loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => console.log(res.data));
+      } else {
+        axiosPublic
+          .post("/logout", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => console.log("cookie cleared", res.data));
+      }
     });
     return () => {
       unsubscribe();

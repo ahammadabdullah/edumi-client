@@ -5,6 +5,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import TeachOnEdumi from "../Pages/TeachOnEdumi/TeachOnEdumi";
 import AllClass from "../Pages/AllClass/AllClass";
+import SingleClassPage from "../Pages/SingleClassPage";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/allclasses",
         element: <AllClass />,
+      },
+      {
+        path: "/allclasses/:id",
+        element: <SingleClassPage />,
       },
       {
         path: "/teachonedumi",
