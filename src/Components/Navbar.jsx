@@ -13,18 +13,36 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Container } from "@mui/material";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Avatar, Container, Menu, MenuItem, Tooltip } from "@mui/material";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import bookLogo from "../assets/book_logo.png";
+import useAuth from "../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const drawerWidth = 240;
 const navItems = ["Home", "All Classes", "Teach on Edumi"];
 
 function Navbar(props) {
+  const { user, logout } = useAuth();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const location = useLocation();
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+  const handleLogout = () => {
+    logout()
+      .then(() => {
+        toast.success("Logged out successfully");
+      })
+      .catch((err) => toast.error(err));
+  };
   const isItemActive = (item) => {
     // Check if the current route matches the item's path
     return location.pathname
@@ -119,17 +137,84 @@ function Navbar(props) {
                 </NavLink>
               ))}
             </Box>
-            <Button
-              color="inherit"
-              sx={{ ml: "120px", border: "1px solid #facc15", px: "25px" }}
-            >
-              <Link
-                to={"/login"}
-                style={{ color: "white", textDecoration: "none" }}
+            {user ? (
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    {user.photoURL ? (
+                      <img
+                        className="w-10 rounded-full"
+                        src={user.photoURL}
+                        alt=""
+                      />
+                    ) : (
+                      <Avatar
+                        alt="Remy Sharp"
+                        src="/static/images/avatar/2.jpg"
+                      />
+                    )}
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  className="h-full"
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <Box padding={1}>
+                    <Typography className="py-2">{user.displayName}</Typography>
+                    <NavLink to={"/dashboard"}>
+                      <Typography className="py-2" variant="subtitle1">
+                        Dashboard
+                      </Typography>
+                    </NavLink>
+                    <Button onClick={handleLogout} variant="outlined">
+                      Logout
+                    </Button>
+                  </Box>
+
+                  {/* settings.map((item) => (
+                    <NavLink
+                      key={item}
+                      to={`/${item.replace(/ /g, "").toLowerCase()}`}
+                    >
+                      <Button
+                        style={{
+                          color: isItemActive(item) ? "#fff" : "#facc15",
+                          textDecoration: isItemActive(item)
+                            ? "underline"
+                            : "none",
+                        }}
+                      >
+                        {item}
+                      </Button>
+                    </NavLink> */}
+                </Menu>
+              </Box>
+            ) : (
+              <Button
+                color="inherit"
+                sx={{ ml: "120px", border: "1px solid #facc15", px: "25px" }}
               >
-                Login
-              </Link>
-            </Button>
+                <Link
+                  to={"/login"}
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  Login
+                </Link>
+              </Button>
+            )}
           </Container>
         </Toolbar>
       </AppBar>
