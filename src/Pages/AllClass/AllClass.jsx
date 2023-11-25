@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import ClassCard from "../../Components/ClassCard";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const AllClass = () => {
+  const axiosPublic = useAxiosPublic();
   const { data, refetch } = useQuery({
     queryKey: ["all classes"],
     queryFn: async () => {
-      const res = await axios.get("/data.json");
+      const res = await axiosPublic.get("/allclasses");
       return res.data;
     },
   });

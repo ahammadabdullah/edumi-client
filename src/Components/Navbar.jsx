@@ -59,8 +59,12 @@ function Navbar(props) {
       onClick={handleDrawerToggle}
       sx={{ textAlign: "center", backgroundColor: "#1976d2", height: "100vh" }}
     >
-      <Typography variant="h6" sx={{ my: 2 }}>
+      <Typography
+        variant="h6"
+        sx={{ my: 2, display: "flex", alignItems: "center", gap: "5px" }}
+      >
         <img src={bookLogo} alt="" style={{ height: "40px" }} />
+        <Typography color={"white"}>Edumi</Typography>
       </Typography>
       <Divider />
       <List sx={{ color: "#fff" }}>
