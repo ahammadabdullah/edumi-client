@@ -3,19 +3,26 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { saveUser } from "../../Api/api";
 
 const Login = () => {
   const { googleLogin, signInWithEmailPass } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosSecure = useAxiosSecure();
 
-  const handleGoogleLogin = () => {
-    googleLogin()
-      .then(() => {
-        toast.success("Successfully logged in");
-        navigate(location?.state ? location.state : "/home");
-      })
-      .catch((err) => toast.error(err.message));
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await googleLogin();
+      // set user to the data base
+      const res = await saveUser(result.user);
+      toast.success("Successfully logged in");
+      navigate(location?.state ? location.state : "/home");
+      console.log(res);
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
   const handleEmailLogin = (e) => {
     e.preventDefault();
