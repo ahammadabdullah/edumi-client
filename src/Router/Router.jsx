@@ -6,6 +6,8 @@ import Register from "../Pages/Register/Register";
 import TeachOnEdumi from "../Pages/TeachOnEdumi/TeachOnEdumi";
 import AllClass from "../Pages/AllClass/AllClass";
 import SingleClassPage from "../Pages/SingleClassPage";
+import Dashboard from "../Layouts/Dashboard";
+import Profile from "../Pages/Dashboard/Profile";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,16 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "/dashboard/profile",
+        element: <Profile />,
       },
     ],
   },
