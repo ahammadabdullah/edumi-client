@@ -11,3 +11,15 @@ export const saveUser = (user) => {
   const { data } = axiosSecure.put(`/users/${user?.email}`, currentUser);
   return data;
 };
+
+// create payment intent
+export const createPaymentIntent = async (price) => {
+  const { data } = await axiosSecure.post("/create-payment-intent", price);
+  return data;
+};
+
+// save booking info in database
+export const saveEnrolledClassInfo = async (paymentInfo) => {
+  const { data } = await axiosSecure.post("/enrolledclasses", paymentInfo);
+  return data;
+};
