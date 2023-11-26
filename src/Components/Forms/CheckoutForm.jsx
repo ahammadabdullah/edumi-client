@@ -80,6 +80,7 @@ const CheckoutForm = ({ classInfo, closeModal }) => {
         // save payment information to the server
         await saveEnrolledClassInfo(paymentInfo);
         closeModal();
+        navigate("/home");
         // navigate("/dashboard/my-bookings");
       } catch (err) {
         console.log(err);

@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import PaymentModal from "../Components/Modals/PaymentModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../Hooks/useAuth";
 const SingleClassPage = () => {
   const { user } = useAuth();
+  const [isEnrolled, setIsEnrolled] = useState(false);
   let [isOpen, setIsOpen] = useState(false);
   const closeModal = () => {
     setIsOpen(false);
@@ -19,8 +20,16 @@ const SingleClassPage = () => {
       return res.data;
     },
   });
-  // const { _id, title, name, price, image, shortDescription, totalEnrollment } =
-  //   item;
+  useEffect(() => {
+    axiosSecure.get(`/enrolledclasses/${id}`).then((res) => {
+      console.log(res.data);
+      if (res.data) {
+        setIsEnrolled(true);
+        console.log(isEnrolled, "28th line");
+      }
+    });
+  }, [id]);
+  console.log(isEnrolled);
   if (isLoading) {
     return <div>Loading</div>;
   }
@@ -56,8 +65,11 @@ const SingleClassPage = () => {
       </div>
       <p className="text-xl">{item?.shortDescription}</p>
       <button
+        disabled={isEnrolled}
         onClick={() => setIsOpen(true)}
-        className="btn py-2 px-3 text-white bg-blue-600"
+        className={`btn py-2 px-3 text-white bg-blue-600 ${
+          isEnrolled && "!bg-blue-300"
+        } `}
       >
         Enroll Now
       </button>
