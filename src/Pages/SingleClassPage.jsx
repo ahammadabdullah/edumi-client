@@ -21,14 +21,15 @@ const SingleClassPage = () => {
     },
   });
   useEffect(() => {
-    axiosSecure.get(`/enrolledclasses/${id}`).then((res) => {
-      console.log(res.data);
-      if (res.data) {
-        setIsEnrolled(true);
-        console.log(isEnrolled, "28th line");
-      }
-    });
-  }, [id]);
+    axiosSecure
+      .get(`/enrolledclasses/${id}?email=${user?.email}`)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data) {
+          setIsEnrolled(true);
+        }
+      });
+  }, [id, user?.email]);
   console.log(isEnrolled);
   if (isLoading) {
     return <div>Loading</div>;

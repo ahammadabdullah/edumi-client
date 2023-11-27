@@ -9,10 +9,12 @@ import MenuItem from "../../Components/Dashboard/MenuItem";
 import StudentsMenu from "../../Components/StudentsMenu/StudentsMenu";
 import TeachersMenu from "../../Components/TeachersMenu/TeachersMenu";
 import AdminMenu from "../../Components/AdminMenu/AdminMenu";
+import { useNavigate } from "react-router-dom";
 // import MenuItem from './MenuItem'
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
+  const navigate = useNavigate();
   // const [role] = useRole();
 
   //   For guest/host menu item toggle button
@@ -20,6 +22,11 @@ const Sidebar = () => {
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
+  };
+  const handleLogout = () => {
+    logOut().then(() => {
+      navigate("/home");
+    });
   };
   return (
     <div>
@@ -81,7 +88,7 @@ const Sidebar = () => {
               address="/dashboard/profile"
             />
             <button
-              onClick={logOut}
+              onClick={handleLogout}
               className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
             >
               <GrLogout className="w-5 h-5" />

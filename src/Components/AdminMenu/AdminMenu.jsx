@@ -5,7 +5,11 @@ import { FaUserCog } from "react-icons/fa";
 const AdminMenu = () => {
   return (
     <div>
-      <MenuItem label={"All Users"} icon={FaUserCog} address={"/all-users"} />
+      <MenuItem
+        label={"All Users"}
+        icon={FaUserCog}
+        address={"/dashboard/all-users"}
+      />
     </div>
   );
 };

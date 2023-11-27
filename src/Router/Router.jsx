@@ -8,11 +8,17 @@ import AllClass from "../Pages/AllClass/AllClass";
 import SingleClassPage from "../Pages/SingleClassPage";
 import Dashboard from "../Layouts/Dashboard";
 import Profile from "../Pages/Dashboard/Profile";
+import MyClasses from "../Pages/Dashboard/MyClasses";
+import MyEnrolledClasses from "../Pages/Dashboard/MyEnrolledClasses";
+import MyOrders from "../Pages/Dashboard/MyOrders";
+import AllUsers from "../Pages/Dashboard/AllUsers";
+import Error from "../Pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/home",
@@ -43,10 +49,27 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    errorElement: <Error />,
     children: [
       {
         path: "/dashboard/profile",
         element: <Profile />,
+      },
+      {
+        path: "/dashboard/my-classes",
+        element: <MyClasses />,
+      },
+      {
+        path: "/dashboard/all-users",
+        element: <AllUsers />,
+      },
+      {
+        path: "/dashboard/my-enrolled-classes",
+        element: <MyEnrolledClasses />,
+      },
+      {
+        path: "/dashboard/my-orders",
+        element: <MyOrders />,
       },
     ],
   },

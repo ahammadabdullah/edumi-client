@@ -5,7 +5,11 @@ import { FaUserCog } from "react-icons/fa";
 const TeachersMenu = () => {
   return (
     <div>
-      <MenuItem label={"My Classes"} icon={FaUserCog} address={"/my-classes"} />
+      <MenuItem
+        label={"My Classes"}
+        icon={FaUserCog}
+        address={"/dashboard/my-classes"}
+      />
     </div>
   );
 };
