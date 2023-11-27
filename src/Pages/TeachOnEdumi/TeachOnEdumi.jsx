@@ -1,14 +1,57 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const TeachOnEdumi = () => {
   const { register, handleSubmit } = useForm();
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
+  const { data: isExist, isLoading } = useQuery({
+    queryKey: ["teacher"],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/teacher/${user?.email}`);
+      return data;
+    },
+  });
+  console.log(isExist);
+  const onSubmit = async (data) => {
     console.log(data);
+    const teacherDetails = {
+      name: data.name,
+      email: user?.email,
+      image: data.image,
+      experience: data.experience,
+      category: data.category,
+      status: "pending",
+    };
+    const { data: res } = await axiosSecure.post(
+      "/teachonedumi",
+      teacherDetails
+    );
+    if (res.insertedId) {
+      toast.success("Request Submitted Successfully");
+      navigate("/");
+      return;
+    }
+    toast.error("Something went wrong");
   };
-
+  if (isLoading) {
+    return <div className="text-center">Loading</div>;
+  }
+  if (isExist.status === "pending") {
+    return (
+      <div className="text-center min-h-screen flex w-full justify-center items-center">
+        <h3 className="text-3xl">
+          Your Request is already Submitted. Wait for admin review.
+        </h3>
+      </div>
+    );
+  }
   return (
     <div className="mt-5 mb-10 max-w-7xl mx-auto">
       <h3 className="text-center text-2xl md:text-3xl lg:text-5xl">
