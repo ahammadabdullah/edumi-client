@@ -13,6 +13,7 @@ import MyEnrolledClasses from "../Pages/Dashboard/MyEnrolledClasses";
 import MyOrders from "../Pages/Dashboard/MyOrders";
 import AllUsers from "../Pages/Dashboard/AllUsers";
 import Error from "../Pages/Error";
+import ClassDetails from "../Pages/Dashboard/ClassDetails";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-enrolled-classes",
         element: <MyEnrolledClasses />,
+      },
+      {
+        path: "/dashboard/my-enrolled-classes/:id",
+        element: <ClassDetails />,
       },
       {
         path: "/dashboard/my-orders",

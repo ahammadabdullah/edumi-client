@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ClassCard = ({ item }) => {
   console.log(item);
   return (
@@ -13,7 +15,9 @@ const ClassCard = ({ item }) => {
       </div>
       <div className="flex justify-center">
         <button className="btn py-2 px-3 bg-blue-600 hover:bg-blue-200 text-white rounded">
-          Continue
+          <Link to={`/dashboard/my-enrolled-classes/${item.classId}`}>
+            Continue
+          </Link>
         </button>
       </div>
     </div>
