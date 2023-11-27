@@ -28,7 +28,6 @@ function Navbar(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const location = useLocation();
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const navigate = useNavigate();
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };

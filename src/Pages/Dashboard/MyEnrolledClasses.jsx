@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import ClassCard from "../../Components/Dashboard/ClassCard";
 
 const MyEnrolledClasses = () => {
   const { user } = useAuth();
@@ -15,7 +16,16 @@ const MyEnrolledClasses = () => {
     },
   });
   console.log(data);
-  return <div>My Enrolled Classes {data?.length}</div>;
+  return (
+    <div>
+      <h3 className="text-center text-3xl">
+        My Enrolled Classes {data?.length}
+      </h3>
+      <div className="grid grid-cols-3 my-10">
+        {data && data.map((item, idx) => <ClassCard item={item} key={idx} />)}
+      </div>
+    </div>
+  );
 };
 
 export default MyEnrolledClasses;
