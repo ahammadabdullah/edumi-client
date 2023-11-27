@@ -2,17 +2,18 @@ import { useState } from "react";
 import Logo from "../../Components/Logo";
 import useAuth from "../../Hooks/useAuth";
 import { GrLogout } from "react-icons/gr";
-import { FcSettings } from "react-icons/fc";
+import { FcHome, FcSettings } from "react-icons/fc";
 import { AiOutlineBars } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
 import MenuItem from "../../Components/Dashboard/MenuItem";
 import StudentsMenu from "../../Components/StudentsMenu/StudentsMenu";
 import TeachersMenu from "../../Components/TeachersMenu/TeachersMenu";
 import AdminMenu from "../../Components/AdminMenu/AdminMenu";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 // import MenuItem from './MenuItem'
 const Sidebar = () => {
-  const { logOut } = useAuth();
+  const { logout } = useAuth();
   const [isActive, setActive] = useState(false);
   const navigate = useNavigate();
   // const [role] = useRole();
@@ -24,9 +25,12 @@ const Sidebar = () => {
     setActive(!isActive);
   };
   const handleLogout = () => {
-    logOut().then(() => {
-      navigate("/home");
-    });
+    logout()
+      .then(() => {
+        toast.success("Logged out successfully");
+        navigate("/");
+      })
+      .catch((err) => toast.error(err));
   };
   return (
     <div>
@@ -87,6 +91,7 @@ const Sidebar = () => {
               label="Profile"
               address="/dashboard/profile"
             />
+            <MenuItem icon={FcHome} label="Home" address="/" />
             <button
               onClick={handleLogout}
               className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"

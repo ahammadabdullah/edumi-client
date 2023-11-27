@@ -14,6 +14,7 @@ import MyOrders from "../Pages/Dashboard/MyOrders";
 import AllUsers from "../Pages/Dashboard/AllUsers";
 import Error from "../Pages/Error";
 import ClassDetails from "../Pages/Dashboard/ClassDetails";
+import TeacherRequests from "../Pages/Dashboard/TeacherRequests";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-orders",
         element: <MyOrders />,
+      },
+      {
+        path: "/dashboard/teacher-requests",
+        element: <TeacherRequests />,
       },
     ],
   },

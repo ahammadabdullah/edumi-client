@@ -18,6 +18,7 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import bookLogo from "../assets/book_logo.png";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
+import userIcon from "../assets/user-icon.png";
 
 const drawerWidth = 240;
 const navItems = ["Home", "All Classes", "Teach on Edumi"];
@@ -151,9 +152,10 @@ function Navbar(props) {
                         alt=""
                       />
                     ) : (
-                      <Avatar
-                        alt="Remy Sharp"
-                        src="/static/images/avatar/2.jpg"
+                      <img
+                        className="w-10 rounded-full"
+                        src={userIcon}
+                        alt=""
                       />
                     )}
                   </IconButton>
@@ -186,23 +188,6 @@ function Navbar(props) {
                       Logout
                     </Button>
                   </Box>
-
-                  {/* settings.map((item) => (
-                    <NavLink
-                      key={item}
-                      to={`/${item.replace(/ /g, "").toLowerCase()}`}
-                    >
-                      <Button
-                        style={{
-                          color: isItemActive(item) ? "#fff" : "#facc15",
-                          textDecoration: isItemActive(item)
-                            ? "underline"
-                            : "none",
-                        }}
-                      >
-                        {item}
-                      </Button>
-                    </NavLink> */}
                 </Menu>
               </Box>
             ) : (

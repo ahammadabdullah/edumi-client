@@ -10,6 +10,11 @@ const AdminMenu = () => {
         icon={FaUserCog}
         address={"/dashboard/all-users"}
       />
+      <MenuItem
+        label={"Teacher Requests"}
+        icon={FaUserCog}
+        address={"/dashboard/teacher-requests"}
+      />
     </div>
   );
 };
