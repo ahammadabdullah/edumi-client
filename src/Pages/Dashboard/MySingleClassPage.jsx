@@ -31,6 +31,14 @@ const MySingleClassPage = () => {
       return res.data;
     },
   });
+  const { data: submittedAssignments } = useQuery({
+    queryFn: ["assignment"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/students/assignments/${id}`);
+      console.log(res.data);
+      return res.data;
+    },
+  });
   const handleCreate = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -61,7 +69,7 @@ const MySingleClassPage = () => {
         <div className="flex justify-around">
           <div className="bg-blue-500 hover:bg-blue-200 hover:text-blue-500 text-white w-[300px] rounded-lg h-[120px] flex items-center justify-center">
             <h3 className="text-3xl text-center ">
-              Total Enrollment: {item.totalEnrollment}
+              Total Enrollment: {item?.totalEnrollment}
             </h3>
           </div>
           <div className="bg-green-500 hover:bg-green-200 hover:text-green-500 text-white w-[300px] rounded-lg h-[120px] flex items-center justify-center">
@@ -70,7 +78,9 @@ const MySingleClassPage = () => {
             </h3>
           </div>
           <div className="bg-pink-500 hover:bg-pink-200 hover:text-pink-500 text-white w-[300px] rounded-lg h-[120px] flex items-center justify-center">
-            <h3 className="text-3xl text-center ">Assignment Submitted: </h3>
+            <h3 className="text-3xl text-center ">
+              Assignment Submitted: {submittedAssignments?.length}
+            </h3>
           </div>
         </div>
       </div>
