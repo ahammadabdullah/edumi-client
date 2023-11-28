@@ -16,6 +16,7 @@ import Error from "../Pages/Error";
 import ClassDetails from "../Pages/Dashboard/ClassDetails";
 import TeacherRequests from "../Pages/Dashboard/TeacherRequests";
 import AddClass from "../Pages/Dashboard/AddClass";
+import MySingleClassPage from "../Pages/Dashboard/MySingleClassPage";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-classes",
         element: <MyClasses />,
+      },
+      {
+        path: "/dashboard/my-classes/:id",
+        element: <MySingleClassPage />,
       },
       {
         path: "/dashboard/all-users",

@@ -28,7 +28,6 @@ const SingleClassPage = () => {
     axiosSecure
       .get(`/enrolledclasses/${id}?email=${user?.email}`)
       .then((res) => {
-        console.log(res.data);
         if (res.data) {
           setIsEnrolled(true);
         }

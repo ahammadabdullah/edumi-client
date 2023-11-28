@@ -2,6 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 
 const MyClassCard = ({ item, refetch }) => {
   const { _id, name, email, description, title, price, image, status } =
@@ -9,7 +10,7 @@ const MyClassCard = ({ item, refetch }) => {
   let [isOpen, setIsOpen] = useState(false);
   let [updateIsOpen, setUpdateIsOpen] = useState(false);
   const axiosSecure = useAxiosSecure();
-
+  const navigate = useNavigate();
   function closeModal() {
     setIsOpen(false);
   }
@@ -54,6 +55,9 @@ const MyClassCard = ({ item, refetch }) => {
     }
     refetch();
   };
+  const handleSeeDetails = () => {
+    navigate(`/dashboard/my-classes/${_id}`);
+  };
   return (
     <div className="w-[300px] p-3 bg-blue-100 rounded mx-auto">
       <div>
@@ -80,10 +84,18 @@ const MyClassCard = ({ item, refetch }) => {
         </button>
         <button
           onClick={openUpdateModal}
-          className="py-2 px-3 rounded bg-blue-500 hover:bg-blue-200 text-white hover:text-blue-500"
+          className="py-2 px-3 rounded bg-green-500 hover:bg-green-200 text-white hover:text-green-500"
         >
           {" "}
           Update
+        </button>
+        <button
+          disabled={status === "pending"}
+          onClick={handleSeeDetails}
+          className="py-2 px-3 disabled:cursor-not-allowed disabled:hover:bg-blue-500 disabled:hover:text-white rounded bg-blue-500 hover:bg-blue-200 text-white hover:text-blue-500"
+        >
+          {" "}
+          See Details
         </button>
       </div>
       <>
