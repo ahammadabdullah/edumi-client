@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ClassCard = ({ item }) => {
-  const { _id, title, name, price, image, description, totalEnrollment } = item;
+  const { _id, title, name, price, image, description, totalEnrollment } =
+    item || {};
   return (
     <div className="w-[300px] mx-auto flex flex-col justify-between">
       <div>

@@ -21,7 +21,6 @@ const ClassDetails = () => {
           Teaching Evaluation Report
         </button>
       </div>
-      class id {id}
       {/* assignment list in tabular format */}
       <TerModal id={id} isOpen={isOpen} closeModal={closeModal} />
     </div>

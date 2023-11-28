@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 const ClassCard = ({ item }) => {
-  console.log(item);
   return (
     <div className="w-[300px] rounded bg-gray-200 pb-3 h-full mx-auto flex flex-col justify-between">
       <div className="rounded-md p-3">

@@ -18,7 +18,7 @@ export const createPaymentIntent = async (price) => {
   return data;
 };
 
-// save booking info in database
+// save enrollement info in database
 export const saveEnrolledClassInfo = async (paymentInfo) => {
   const { data } = await axiosSecure.post("/enrolledclasses", paymentInfo);
   return data;

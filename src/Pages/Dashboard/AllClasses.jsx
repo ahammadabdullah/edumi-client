@@ -2,6 +2,7 @@ import React from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const AllClasses = () => {
   const axiosSecure = useAxiosSecure();
@@ -15,6 +16,24 @@ const AllClasses = () => {
   });
   const handleSeeProgress = (id) => {
     navigate(`/dashboard/class-progress/${id}`);
+  };
+  const handleApprove = async (id) => {
+    const { data } = await axiosSecure.put(`/admin/allclasses/approve/${id}`);
+    if (data.modifiedCount) {
+      toast.success("Approved Successfully");
+    } else {
+      toast.error("Something went wrong");
+    }
+    refetch();
+  };
+  const handleReject = async (id) => {
+    const { data } = await axiosSecure.put(`/admin/allclasses/reject/${id}`);
+    if (data.modifiedCount) {
+      toast.success("Rejected Successfully");
+    } else {
+      toast.error("Something went wrong");
+    }
+    refetch();
   };
   return (
     <div>
@@ -68,25 +87,42 @@ const AllClasses = () => {
                     <td className="px-6 py-4">{item?.status}</td>
                     <td className="px-6 py-4">
                       <button
-                        disabled={item?.status === "approved"}
+                        disabled={
+                          item?.status === "approved" ||
+                          item?.status === "rejected"
+                        }
                         onClick={() => handleApprove(item?._id)}
                         className="disabled:cursor-not-allowed disabled:hover:bg-green-500 disabled:text-white btn py-2 px-3 rounded font-semibold hover:bg-green-200 bg-green-500 text-white hover:text-green-500"
                       >
-                        {item?.status === "approved" ? "Approved" : "Approve"}
+                        {item?.status === "approved"
+                          ? "Approved"
+                          : item?.status === "rejected"
+                          ? "Rejected"
+                          : "Approve"}
                       </button>
                     </td>
                     <td className="px-6 py-4">
                       <button
-                        disabled={item?.status === "approved"}
+                        disabled={
+                          item?.status === "approved" ||
+                          item?.status === "rejected"
+                        }
                         onClick={() => handleReject(item?._id)}
                         className="disabled:cursor-not-allowed disabled:hover:bg-red-500 disabled:text-white btn py-2 px-3 rounded font-semibold hover:bg-red-200 bg-red-500 text-white hover:text-red-500"
                       >
-                        {item?.status === "approved" ? "Approved" : "Reject"}
+                        {item?.status === "approved"
+                          ? "Approved"
+                          : item?.status === "rejected"
+                          ? "Rejected"
+                          : "Reject"}
                       </button>
                     </td>
                     <td className="px-6 py-4">
                       <button
-                        disabled={item?.status === "pending"}
+                        disabled={
+                          item?.status === "pending" ||
+                          item?.status === "rejected"
+                        }
                         onClick={() => handleSeeProgress(item?._id)}
                         className="disabled:cursor-not-allowed disabled:hover:bg-blue-500 disabled:text-white btn py-2 px-3 rounded font-semibold hover:bg-blue-200 bg-blue-500 text-white hover:text-blue-500"
                       >
