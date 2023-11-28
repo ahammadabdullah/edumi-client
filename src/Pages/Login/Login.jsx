@@ -3,14 +3,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 import { Helmet } from "react-helmet";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { saveUser } from "../../Api/api";
+import { useForm } from "react-hook-form";
+import { ImSpinner9 } from "react-icons/im";
 
 const Login = () => {
-  const { googleLogin, signInWithEmailPass } = useAuth();
+  const { googleLogin, signInWithEmailPass, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const axiosSecure = useAxiosSecure();
+  const { register, handleSubmit } = useForm();
 
   const handleGoogleLogin = async () => {
     try {
@@ -24,10 +25,9 @@ const Login = () => {
       toast.error(error.message);
     }
   };
-  const handleEmailLogin = (e) => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+  const handleEmailLogin = async (data) => {
+    const email = data.email;
+    const password = data.password;
     signInWithEmailPass(email, password)
       .then(() => {
         toast.success("Successfully logged in");
@@ -60,33 +60,43 @@ const Login = () => {
             )}
 
             <hr />
-            <form onSubmit={handleEmailLogin} className="pt-10">
+            <form onSubmit={handleSubmit(handleEmailLogin)} className="pt-10">
               <label className="block text-left">Email Address</label>
               <input
+                {...register("email")}
                 className="w-full bg-gray-100 py-5 pl-5 my-4 text-primary focus:border-primary  focus:outline-primary "
                 type="email"
                 name="email"
                 placeholder="Email"
+                required
               />
               <label className="block text-left">Password</label>
               <input
+                {...register("password")}
+                required
                 className="w-full bg-gray-100 py-5 pl-5 my-4 text-primary focus:border-primary  focus:outline-primary"
                 type="password"
                 name="password"
                 placeholder="Password"
               />
-              <input
-                className="btn hover:bg-secondary rounded-none w-full bg-primary  py-4 text-white my-4"
+
+              <button
+                className="btn hover:bg-blue-200 hover:border-blue-500 hover:text-blue-500 rounded-none w-full bg-blue-500 hover:border-2 hover:font-semibold  py-4 text-white my-4"
                 type="submit"
-                value="login"
-              />
+              >
+                {loading ? (
+                  <ImSpinner9 className="m-auto animate-spin" size={24} />
+                ) : (
+                  "Login"
+                )}
+              </button>
             </form>
             <p className="pb-8">
               Dont’t Have An Account ?{" "}
               <Link
                 state={location.state}
                 to={"/register"}
-                className=" font-bold text-primary"
+                className=" font-bold hover:text-blue-500"
               >
                 Register
               </Link>
@@ -98,7 +108,7 @@ const Login = () => {
             <div className="pb-8">
               <button
                 onClick={handleGoogleLogin}
-                className="w-full py-4 flex items-center justify-center gap-3 text-primary border-2  border-primary "
+                className="w-full py-4 flex items-center justify-center gap-3 border-2  bg-blue-200 hover:border-blue-500 hover:text-blue-500 rounded-none  hover:border-2 hover:font-semibold "
               >
                 {" "}
                 <IoLogoGoogle /> <span className="font-bold">Google</span>

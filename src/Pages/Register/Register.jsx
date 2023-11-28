@@ -4,33 +4,31 @@ import { toast } from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
 import auth from "../../config/config.firebase";
 import { Helmet } from "react-helmet";
+import { useForm } from "react-hook-form";
+import { saveUser } from "../../Api/api";
+import { ImSpinner9 } from "react-icons/im";
 
 const Register = () => {
-  const { createAccWithEmailPass } = useAuth();
-  const navigate = useNavigate();
-  // eslint-disable-next-line no-useless-escape
-  const passRegex = /^(?=.*[A-Z])(?=.*[!@#\$%\^&\*])(?=.{6,})/;
-  const handleRegister = (e) => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const name = e.target.name.value;
-    const photoURL = e.target.photo.value;
+  const { createAccWithEmailPass, loading } = useAuth();
+  const { register, handleSubmit } = useForm();
 
-    // if (!passRegex.test(password)) {
-    //   toast.error(
-    //     "Passwords  must have 6 characters , a Upper Case character and special characters "
-    //   );
-    //   return;
-    // }
+  const navigate = useNavigate();
+  const handleRegister = (data) => {
+    const email = data.email;
+    const password = data.password;
+    const name = data.name;
+    const photoURL = data.photo;
+
     createAccWithEmailPass(email, password, name, photoURL)
-      .then(() =>
+      .then((userCredential) =>
         updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: photoURL,
         })
-          .then(() => {
+          .then(async () => {
+            await saveUser(userCredential.user);
             toast.success("Successfully account created");
+
             navigate(location?.state ? location.state : "/");
           })
           .catch((err) => toast.error(err.message))
@@ -52,9 +50,11 @@ const Register = () => {
                   Register your account
                 </h3>
                 <hr />
-                <form onSubmit={handleRegister} className="pt-10">
+                <form onSubmit={handleSubmit(handleRegister)} className="pt-10">
                   <label className="block text-left">Your Name</label>
                   <input
+                    {...register("name")}
+                    required
                     className="w-full bg-gray-100 py-5 pl-5 my-4 focus:outline-primary text-primary"
                     type="text"
                     name="name"
@@ -62,6 +62,8 @@ const Register = () => {
                   />
                   <label className="block text-left">photo URL</label>
                   <input
+                    {...register("photo")}
+                    required
                     className="w-full bg-gray-100 py-5 pl-5 my-4 focus:outline-primary text-primary"
                     type="text"
                     name="photo"
@@ -69,6 +71,7 @@ const Register = () => {
                   />
                   <label className="block text-left">Email Address</label>
                   <input
+                    {...register("email")}
                     className="w-full bg-gray-100 py-5 pl-5 my-4 focus:outline-primary text-primary"
                     type="email"
                     name="email"
@@ -77,21 +80,31 @@ const Register = () => {
                   />
                   <label className="block text-left">Password</label>
                   <input
+                    {...register("password")}
                     className="w-full bg-gray-100 py-5 pl-5 my-4 focus:outline-primary text-primary"
                     type="password"
                     name="password"
                     placeholder="Password"
                     required
                   />
-                  <input
-                    className="btn hover:bg-secondary rounded-none w-full bg-primary text-white py-4  my-4"
+
+                  <button
+                    className="btn hover:bg-blue-200 hover:border-blue-500 hover:text-blue-500 rounded-none w-full bg-blue-500 hover:border-2 hover:font-semibold  py-4 text-white my-4"
                     type="submit"
-                    value="Register"
-                  />
+                  >
+                    {loading ? (
+                      <ImSpinner9 className="m-auto animate-spin" size={24} />
+                    ) : (
+                      "Register"
+                    )}{" "}
+                  </button>
                 </form>
                 <p className="py-8">
                   Already Have An Account ?{" "}
-                  <Link to={"/login"} className=" font-bold text-primary">
+                  <Link
+                    to={"/login"}
+                    className=" font-bold hover:text-blue-500"
+                  >
                     Login Here
                   </Link>
                 </p>
