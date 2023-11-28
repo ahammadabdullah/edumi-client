@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import ClassCard from "../../Components/Dashboard/ClassCard";
+import { Helmet } from "react-helmet";
 
 const MyEnrolledClasses = () => {
   const { user } = useAuth();
@@ -18,6 +19,9 @@ const MyEnrolledClasses = () => {
   console.log(data);
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | My Classes</title>
+      </Helmet>
       <h3 className="text-center text-3xl">
         My Enrolled Classes {data?.length}
       </h3>

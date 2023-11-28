@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import userIcon from "../../assets/user-icon.png";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
+
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
   const { data, refetch, isLoading } = useQuery({
@@ -25,6 +27,9 @@ const AllUsers = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | All Users</title>
+      </Helmet>
       <h3>Total Users:</h3>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

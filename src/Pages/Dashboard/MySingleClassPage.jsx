@@ -32,7 +32,7 @@ const MySingleClassPage = () => {
     },
   });
   const { data: submittedAssignments } = useQuery({
-    queryFn: ["assignment"],
+    queryKey: ["assignment"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/students/assignments/${id}`);
       console.log(res.data);
@@ -64,6 +64,9 @@ const MySingleClassPage = () => {
   };
   return (
     <div className="space-y-10">
+      <Helmet>
+        <title>Dashboard | My Class</title>
+      </Helmet>
       <div>
         <h3 className="text-4xl py-10 text-center">Class Progress: </h3>
         <div className="flex justify-around">

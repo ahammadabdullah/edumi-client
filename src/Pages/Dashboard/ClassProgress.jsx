@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import FeedbackCard from "../../Components/Dashboard/FeedbackCard";
+import { Helmet } from "react-helmet";
 
 const ClassProgress = () => {
   const { id } = useParams();
@@ -16,6 +17,9 @@ const ClassProgress = () => {
   });
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | Class Progress</title>
+      </Helmet>
       <h3 className="text-3xl text-center py-10">
         Total Reports: {data?.length}
       </h3>

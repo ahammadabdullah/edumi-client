@@ -4,6 +4,8 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import PaymentModal from "../Components/Modals/PaymentModal";
 import { useEffect, useState } from "react";
 import useAuth from "../Hooks/useAuth";
+import { Helmet } from "react-helmet";
+
 const SingleClassPage = () => {
   const { user } = useAuth();
   const [isEnrolled, setIsEnrolled] = useState(false);
@@ -46,18 +48,13 @@ const SingleClassPage = () => {
     studentName: user?.displayName,
     studentEmail: user?.email,
   };
-  // const [classInfo, setClassInfo] = useState({
-  //   classId: item?._id,
-  //   title: item?.title,
-  //   name: item?.name,
-  //   price: item?.price,
-  //   image: item?.image,
-  //   studentName: user?.displayName,
-  //   studentEmail: user?.email,
-  // });
+
   console.log(classInfo);
   return (
     <div className="max-w-7xl mx-auto mt-5 space-y-3 mb-20 px-10 ">
+      <Helmet>
+        <title>Class Details | Edumi</title>
+      </Helmet>
       <img className="w-full" src={item?.image} alt="" />
       <h3 className="text-3xl md:text-4xl lg:text-5xl">{item?.title}</h3>
       <h4 className="text-xl md:text-2xl lg:text-3xl">

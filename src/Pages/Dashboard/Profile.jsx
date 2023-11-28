@@ -9,7 +9,7 @@ const Profile = () => {
   return (
     <div className="flex justify-center items-center h-screen">
       <Helmet>
-        <title>Profile</title>
+        <title>Dashboard | Profile</title>
       </Helmet>
       <div className="bg-white shadow-lg rounded-2xl w-3/5">
         <img

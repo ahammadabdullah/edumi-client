@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const TeacherRequests = () => {
   const axiosSecure = useAxiosSecure();
@@ -35,6 +36,9 @@ const TeacherRequests = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | Teacher Requests</title>
+      </Helmet>
       <h3 className="text-center text-3xl pb-10">
         Total Teachers requests: {data?.length}
       </h3>

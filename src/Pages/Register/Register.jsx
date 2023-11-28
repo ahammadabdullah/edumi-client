@@ -40,7 +40,7 @@ const Register = () => {
     <div>
       <div className="bg-base-300  ">
         <Helmet>
-          <title>Register</title>
+          <title>Register | Edumi</title>
         </Helmet>
         <div className="max-w-7xl mx-auto pt-20">
           <div className="pb-20">

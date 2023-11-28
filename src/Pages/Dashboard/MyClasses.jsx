@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import MyClassCard from "../../Components/Dashboard/MyClassCard";
+import { Helmet } from "react-helmet";
 
 const MyClasses = () => {
   const { user } = useAuth();
@@ -16,6 +17,9 @@ const MyClasses = () => {
   });
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | My Classes</title>
+      </Helmet>
       <h3 className="text-3xl text-center">My Total Classes: {data?.length}</h3>
       <div className="grid grid-cols-3 mx-auto mt-10">
         {data &&

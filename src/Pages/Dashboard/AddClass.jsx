@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const AddClass = () => {
   const { user } = useAuth();
@@ -31,6 +32,9 @@ const AddClass = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | Add Class</title>
+      </Helmet>
       <h3 className="text-3xl text-center">Add Class</h3>
       <div className="flex justify-center mt-10">
         <form onSubmit={handleSubmit(onSubmit)}>

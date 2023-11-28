@@ -3,6 +3,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const AllClasses = () => {
   const axiosSecure = useAxiosSecure();
@@ -37,6 +38,9 @@ const AllClasses = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | All Classes</title>
+      </Helmet>
       <h3>Total Class {data?.length} </h3>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

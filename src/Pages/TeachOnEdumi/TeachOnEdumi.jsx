@@ -4,6 +4,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 
 const TeachOnEdumi = () => {
   const { register, handleSubmit } = useForm();
@@ -55,6 +56,9 @@ const TeachOnEdumi = () => {
   }
   return (
     <div className="mt-5 mb-10 max-w-7xl mx-auto">
+      <Helmet>
+        <title>Teach On Edumi | Edumi</title>
+      </Helmet>
       <h3 className="text-center text-2xl md:text-3xl lg:text-5xl">
         Want to Be a teacher ?{" "}
       </h3>

@@ -5,6 +5,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const ClassDetails = () => {
   const { id } = useParams();
@@ -18,7 +19,7 @@ const ClassDetails = () => {
     setIsOpen(true);
   };
   const { data } = useQuery({
-    queryFn: ["assignment"],
+    queryKey: ["assignment"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/students/assignments/${id}`);
       console.log(res.data);
@@ -51,6 +52,9 @@ const ClassDetails = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | Class Details</title>
+      </Helmet>
       <div>
         <button
           onClick={openModal}
