@@ -10,6 +10,11 @@ const TeachersMenu = () => {
         icon={FaUserCog}
         address={"/dashboard/my-classes"}
       />
+      <MenuItem
+        label={"Add Class"}
+        icon={FaUserCog}
+        address={"/dashboard/add-class"}
+      />
     </div>
   );
 };

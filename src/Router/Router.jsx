@@ -15,6 +15,7 @@ import AllUsers from "../Pages/Dashboard/AllUsers";
 import Error from "../Pages/Error";
 import ClassDetails from "../Pages/Dashboard/ClassDetails";
 import TeacherRequests from "../Pages/Dashboard/TeacherRequests";
+import AddClass from "../Pages/Dashboard/AddClass";
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/teacher-requests",
         element: <TeacherRequests />,
+      },
+      {
+        path: "/dashboard/add-class",
+        element: <AddClass />,
       },
     ],
   },
