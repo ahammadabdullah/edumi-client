@@ -13,7 +13,11 @@ const SingleClassPage = () => {
   };
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
-  const { data: item, isLoading } = useQuery({
+  const {
+    data: item,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["singleClass"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/allclasses/${id}`);
@@ -64,7 +68,7 @@ const SingleClassPage = () => {
         <p>Price: {item?.price}$ </p>
         <p>Already Enrolled: {item?.totalEnrollment}</p>
       </div>
-      <p className="text-xl">{item?.shortDescription}</p>
+      <p className="text-xl">{item?.description}</p>
       <button
         disabled={isEnrolled}
         onClick={() => setIsOpen(true)}
@@ -75,6 +79,7 @@ const SingleClassPage = () => {
         Enroll Now
       </button>
       <PaymentModal
+        refetch={refetch}
         closeModal={closeModal}
         isOpen={isOpen}
         classInfo={classInfo}

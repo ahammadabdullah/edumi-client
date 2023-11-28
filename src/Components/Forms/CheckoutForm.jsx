@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { createPaymentIntent, saveEnrolledClassInfo } from "../../Api/api";
 
-const CheckoutForm = ({ classInfo, closeModal }) => {
+const CheckoutForm = ({ classInfo, closeModal, refetch }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
@@ -80,7 +80,8 @@ const CheckoutForm = ({ classInfo, closeModal }) => {
         // save payment information to the server
         await saveEnrolledClassInfo(paymentInfo);
         closeModal();
-        navigate("/dashboard/my-orders");
+        refetch();
+        // navigate("/dashboard/my-orders");
       } catch (err) {
         console.log(err);
         toast.error(err.message);
