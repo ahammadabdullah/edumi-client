@@ -4,7 +4,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const AllClass = () => {
   const axiosPublic = useAxiosPublic();
   const { data, refetch } = useQuery({
-    queryKey: ["all classes"],
+    queryKey: ["all approved classes "],
     queryFn: async () => {
       const res = await axiosPublic.get("/allclasses");
       return res.data;

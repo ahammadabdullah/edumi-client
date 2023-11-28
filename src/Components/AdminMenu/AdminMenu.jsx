@@ -6,6 +6,11 @@ const AdminMenu = () => {
   return (
     <div>
       <MenuItem
+        label={"All Classes"}
+        icon={FaUserCog}
+        address={"/dashboard/all-classes"}
+      />
+      <MenuItem
         label={"All Users"}
         icon={FaUserCog}
         address={"/dashboard/all-users"}

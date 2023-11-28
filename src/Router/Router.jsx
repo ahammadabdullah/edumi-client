@@ -17,6 +17,8 @@ import ClassDetails from "../Pages/Dashboard/ClassDetails";
 import TeacherRequests from "../Pages/Dashboard/TeacherRequests";
 import AddClass from "../Pages/Dashboard/AddClass";
 import MySingleClassPage from "../Pages/Dashboard/MySingleClassPage";
+import AllClasses from "../Pages/Dashboard/AllClasses";
+import ClassProgress from "../Pages/Dashboard/ClassProgress";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +92,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/teacher-requests",
         element: <TeacherRequests />,
+      },
+      {
+        path: "/dashboard/all-classes",
+        element: <AllClasses />,
+      },
+      {
+        path: "/dashboard/class-progress/:id",
+        element: <ClassProgress />,
       },
       {
         path: "/dashboard/add-class",
