@@ -1,6 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const MyClassCard = ({ item, refetch }) => {
   const { _id, name, email, description, title, price, image, status } =
@@ -37,6 +38,21 @@ const MyClassCard = ({ item, refetch }) => {
     const price = form.price.value;
     const image = form.image.value;
     console.log(title, description, price, image);
+    const info = {
+      title,
+      description,
+      price: parseFloat(price),
+      image,
+    };
+    const { data } = await axiosSecure.put(`/myclasses/${_id}`, info);
+    console.log(data);
+    if (data.modifiedCount) {
+      toast.success("Updated Successfully");
+      closeUpdateModal();
+    } else {
+      toast.error("Something went wrong");
+    }
+    refetch();
   };
   return (
     <div className="w-[300px] p-3 bg-blue-100 rounded mx-auto">
