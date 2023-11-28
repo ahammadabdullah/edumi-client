@@ -57,7 +57,7 @@ const SingleClassPage = () => {
   // });
   console.log(classInfo);
   return (
-    <div className="max-w-7xl mx-auto mt-5 space-y-3 mb-20">
+    <div className="max-w-7xl mx-auto mt-5 space-y-3 mb-20 px-10 ">
       <img className="w-full" src={item?.image} alt="" />
       <h3 className="text-3xl md:text-4xl lg:text-5xl">{item?.title}</h3>
       <h4 className="text-xl md:text-2xl lg:text-3xl">
@@ -71,7 +71,7 @@ const SingleClassPage = () => {
       <button
         disabled={isEnrolled}
         onClick={() => setIsOpen(true)}
-        className={`btn py-2 px-3 text-white bg-blue-600 ${
+        className={`btn py-2 px-3 text-white  bg-blue-500 hover:bg-blue-200 hover:text-blue-500 hover:font-semibold rounded ${
           isEnrolled && "!bg-blue-300"
         } `}
       >

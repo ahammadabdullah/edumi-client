@@ -108,10 +108,16 @@ const Login = () => {
             <div className="pb-8">
               <button
                 onClick={handleGoogleLogin}
-                className="w-full py-4 flex items-center justify-center gap-3 border-2  bg-blue-200 hover:border-blue-500 hover:text-blue-500 rounded-none  hover:border-2 hover:font-semibold "
+                className="w-full py-4   border-2  bg-blue-200 hover:border-blue-500 hover:text-blue-500 rounded-none  hover:border-2 hover:font-semibold "
               >
                 {" "}
-                <IoLogoGoogle /> <span className="font-bold">Google</span>
+                {loading ? (
+                  <ImSpinner9 className="m-auto animate-spin" size={24} />
+                ) : (
+                  <span className="flex items-center justify-center gap-3">
+                    <IoLogoGoogle /> <span className="font-bold">Google</span>
+                  </span>
+                )}
               </button>
             </div>
           </div>
