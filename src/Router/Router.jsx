@@ -19,6 +19,9 @@ import AddClass from "../Pages/Dashboard/AddClass";
 import MySingleClassPage from "../Pages/Dashboard/MySingleClassPage";
 import AllClasses from "../Pages/Dashboard/AllClasses";
 import ClassProgress from "../Pages/Dashboard/ClassProgress";
+import AdminRoute from "../PrivateRoute/AdminRoute";
+import TeacherRoute from "../PrivateRoute/TeacherRoute";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -40,11 +43,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/allclasses/:id",
-        element: <SingleClassPage />,
+        element: (
+          <PrivateRoute>
+            <SingleClassPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/teachonedumi",
-        element: <TeachOnEdumi />,
+        element: (
+          <PrivateRoute>
+            <TeachOnEdumi />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -58,52 +69,114 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />,
+      </PrivateRoute>
+    ),
     errorElement: <Error />,
     children: [
       {
         path: "/dashboard/profile",
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/my-classes",
-        element: <MyClasses />,
+        element: (
+          <PrivateRoute>
+            <TeacherRoute>
+              <MyClasses />
+            </TeacherRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/my-classes/:id",
-        element: <MySingleClassPage />,
+        element: (
+          <PrivateRoute>
+            <TeacherRoute>
+              <MySingleClassPage />
+            </TeacherRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/all-users",
-        element: <AllUsers />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllUsers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/my-enrolled-classes",
-        element: <MyEnrolledClasses />,
+        element: (
+          <PrivateRoute>
+            <MyEnrolledClasses />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/my-enrolled-classes/:id",
-        element: <ClassDetails />,
+        element: (
+          <PrivateRoute>
+            <ClassDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/my-orders",
-        element: <MyOrders />,
+        element: (
+          <PrivateRoute>
+            <MyOrders />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/teacher-requests",
-        element: <TeacherRequests />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <TeacherRequests />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/all-classes",
-        element: <AllClasses />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllClasses />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/class-progress/:id",
-        element: <ClassProgress />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ClassProgress />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/add-class",
-        element: <AddClass />,
+        element: (
+          <PrivateRoute>
+            <TeacherRoute>
+              <AddClass />
+            </TeacherRoute>
+          </PrivateRoute>
+        ),
       },
     ],
   },

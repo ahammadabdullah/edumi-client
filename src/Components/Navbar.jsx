@@ -179,7 +179,7 @@ function Navbar(props) {
                 >
                   <Box padding={1}>
                     <Typography className="py-2">{user.displayName}</Typography>
-                    <NavLink to={"/dashboard"}>
+                    <NavLink to={"/dashboard/profile"}>
                       <Typography className="py-2" variant="subtitle1">
                         Dashboard
                       </Typography>

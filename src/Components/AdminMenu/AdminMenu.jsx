@@ -1,18 +1,19 @@
 import React from "react";
 import MenuItem from "../Dashboard/MenuItem";
-import { FaUserCog } from "react-icons/fa";
+import { FaUserCog, FaUsers } from "react-icons/fa";
+import { SiGoogleclassroom } from "react-icons/si";
 
 const AdminMenu = () => {
   return (
     <div>
       <MenuItem
         label={"All Classes"}
-        icon={FaUserCog}
+        icon={SiGoogleclassroom}
         address={"/dashboard/all-classes"}
       />
       <MenuItem
         label={"All Users"}
-        icon={FaUserCog}
+        icon={FaUsers}
         address={"/dashboard/all-users"}
       />
       <MenuItem

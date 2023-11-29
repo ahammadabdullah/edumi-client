@@ -3,20 +3,21 @@ import Logo from "../../Components/Logo";
 import useAuth from "../../Hooks/useAuth";
 import { GrLogout } from "react-icons/gr";
 import { FcHome, FcSettings } from "react-icons/fc";
-import { AiOutlineBars } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
 import MenuItem from "../../Components/Dashboard/MenuItem";
 import StudentsMenu from "../../Components/StudentsMenu/StudentsMenu";
 import TeachersMenu from "../../Components/TeachersMenu/TeachersMenu";
 import AdminMenu from "../../Components/AdminMenu/AdminMenu";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import useRole from "../../Hooks/useRole";
+import { FaHome, FaUser } from "react-icons/fa";
 // import MenuItem from './MenuItem'
 const Sidebar = () => {
   const { logout } = useAuth();
   const [isActive, setActive] = useState(false);
   const navigate = useNavigate();
-  // const [role] = useRole();
+  const [role] = useRole();
 
   //   For guest/host menu item toggle button
 
@@ -66,14 +67,10 @@ const Sidebar = () => {
             {/* Nav Items */}
             <div className="flex flex-col justify-between flex-1 mt-6">
               <nav>
-                <MenuItem
-                  icon={BsGraphUp}
-                  label="Statistics"
-                  address="/dashboard"
-                />
-                <StudentsMenu />
-                <TeachersMenu />
-                <AdminMenu />
+                {role === "Student" && <StudentsMenu />}
+                {role === "Teacher" && <TeachersMenu />}
+                {role === "Admin" && <AdminMenu />}
+
                 {/* Host Menu Items */}
                 {/* {role === "guest" && <GuestMenu />}
                 {role === "host" ? toggle ? <HostMenu /> : <GuestMenu /> : ""}
@@ -86,11 +83,11 @@ const Sidebar = () => {
             <hr />
 
             <MenuItem
-              icon={FcSettings}
+              icon={FaUser}
               label="Profile"
               address="/dashboard/profile"
             />
-            <MenuItem icon={FcHome} label="Home" address="/" />
+            <MenuItem icon={FaHome} label="Home" address="/" />
             <button
               onClick={handleLogout}
               className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
