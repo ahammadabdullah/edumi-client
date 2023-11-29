@@ -21,7 +21,7 @@ const MyClasses = () => {
         <title>Dashboard | My Classes</title>
       </Helmet>
       <h3 className="text-3xl text-center">My Total Classes: {data?.length}</h3>
-      <div className="grid grid-cols-3 mx-auto mt-10">
+      <div className="grid grid-cols-3 gap-10 mx-auto mt-10">
         {data &&
           data.map((item) => (
             <MyClassCard key={item._id} item={item} refetch={refetch} />

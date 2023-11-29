@@ -81,7 +81,7 @@ const CheckoutForm = ({ classInfo, closeModal, refetch }) => {
         await saveEnrolledClassInfo(paymentInfo);
         closeModal();
         refetch();
-        // navigate("/dashboard/my-orders");
+        navigate("/dashboard/my-orders");
       } catch (err) {
         console.log(err);
         toast.error(err.message);

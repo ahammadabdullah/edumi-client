@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 
 const MySingleClassPage = () => {
   const { id } = useParams();

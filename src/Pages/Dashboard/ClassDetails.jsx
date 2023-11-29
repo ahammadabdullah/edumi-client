@@ -106,7 +106,7 @@ const ClassDetails = () => {
                         onClick={() => handleSubmitAssignment(item._id)}
                         className="disabled:cursor-not-allowed disabled:hover:bg-green-500 disabled:text-white btn py-2 px-3 rounded font-semibold hover:bg-green-200 bg-green-500 text-white hover:text-green-500"
                       >
-                        {isExist.some((i) => i.assignmentId === item._id)
+                        {isExist?.some((i) => i.assignmentId === item._id)
                           ? "Submitted"
                           : "Submit"}
                       </button>

@@ -6,7 +6,7 @@ const TeacherRoute = ({ children }) => {
   const [role, isLoading] = useRole();
 
   if (isLoading) return <Loader />;
-  if (role === "Admin") return children;
+  if (role === "Teacher") return children;
   return <Navigate to="/dashboard/profile" />;
 };
 

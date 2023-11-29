@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import ClassCard from "../../Components/Dashboard/ClassCard";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const MyEnrolledClasses = () => {
   const { user } = useAuth();
-  const axiosSecure = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data } = useQuery({
     queryKey: ["My Enrolled Classes"],
     queryFn: async () => {
