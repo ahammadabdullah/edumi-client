@@ -4,6 +4,7 @@ import FeaturedClass from "./FeaturedClass";
 import { Helmet } from "react-helmet";
 import Faq from "./Faq";
 import WhyUs from "./WhyUs";
+import BeInstructor from "./BeInstructor";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <Banner />
       <FeaturedClass />
       <WhyUs />
+      <BeInstructor />
       <Faq />
     </div>
   );

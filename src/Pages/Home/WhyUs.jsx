@@ -10,13 +10,12 @@ const WhyUs = () => {
     queryKey: ["statistics"],
     queryFn: async () => {
       const res = await axiosPublic.get("/statistics");
-      console.log(res.data);
       return res.data;
     },
   });
   return (
     <div className="bg-gray-200 mt-10 ">
-      <div className="max-w-7xl mx-auto pt-20 pb-10">
+      <div className="max-w-7xl mx-auto pt-20 pb-20">
         <h3 className="text-3xl text-center font-semibold pb-10"> Why Us ?</h3>
         <div className="flex flex-col items-center justify-center gap-20 md:flex-row">
           <div className="md:w-1/2 flex flex-col items-end  justify-center gap-10 mx-auto">
@@ -28,7 +27,7 @@ const WhyUs = () => {
 
                 <div className="flex flex-col items-center">
                   <h3 className="font-semibold text-2xl">
-                    {statistics.totalUser}
+                    {statistics?.totalUser}
                   </h3>
                   <p className="w-[122px]">Total User</p>
                 </div>
@@ -42,7 +41,7 @@ const WhyUs = () => {
 
                 <div className="flex flex-col items-center">
                   <h3 className="font-semibold text-2xl">
-                    {statistics.totalClasses}
+                    {statistics?.totalClasses}
                   </h3>
                   <p className="w-[122px]">Total Classes</p>
                 </div>
@@ -56,15 +55,15 @@ const WhyUs = () => {
 
                 <div className="flex flex-col items-center">
                   <h3 className="font-semibold text-2xl">
-                    {statistics.totalEnrollment}
+                    {statistics?.totalEnrollment}
                   </h3>
                   <p className="w-[122px]">Total Enrollment</p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="md:w-1/2 hidden md:block h-[530px] md:pr-10">
-            <img className="h-full" src={about} alt="" />
+          <div className="md:w-1/2 rounded hidden md:block h-[530px] md:pr-10">
+            <img className="h-full rounded" src={about} alt="" />
           </div>
         </div>
       </div>

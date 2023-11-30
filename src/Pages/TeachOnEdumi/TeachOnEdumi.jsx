@@ -3,23 +3,31 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
 import image from "../../assets/teacher.png";
 const TeachOnEdumi = () => {
+  const queryClient = useQueryClient();
   const { register, handleSubmit } = useForm();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
-  const { data: isExist, isLoading } = useQuery({
-    queryKey: ["teacher"],
-    queryFn: async () => {
-      const { data } = await axiosSecure.get(`/teacher/${user?.email}`);
-      return data;
+  const addRequest = async (teacherDetails) => {
+    const res = await axiosSecure.post("/teachonedumi", teacherDetails);
+    return res.data;
+  };
+
+  const { mutateAsync } = useMutation({
+    mutationFn: async (teacherDetails) => {
+      const res = await axiosSecure.post("/teachonedumi", teacherDetails);
+      return res.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("teacherRequests");
     },
   });
-  console.log(isExist);
+
   const onSubmit = async (data) => {
     console.log(data);
     const teacherDetails = {
@@ -31,17 +39,36 @@ const TeachOnEdumi = () => {
       category: data.category,
       status: "pending",
     };
-    const { data: res } = await axiosSecure.post(
-      "/teachonedumi",
-      teacherDetails
-    );
-    if (res.insertedId) {
-      toast.success("Request Submitted Successfully");
-      navigate("/");
-      return;
+    try {
+      const result = await mutateAsync(teacherDetails);
+      if (result.insertedId) {
+        toast.success("Request Submitted Successfully");
+        navigate("/");
+        return;
+      } else {
+        toast.error("Something went wrong");
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
     }
-    toast.error("Something went wrong");
+    // const { data: res } = await axiosSecure.post(
+    //   "/teachonedumi",
+    //   teacherDetails
+    // );
+    // if (res.insertedId) {
+    //   toast.success("Request Submitted Successfully");
+    //   navigate("/");
+    //   return;
+    // }
+    // toast.error("Something went wrong");
   };
+  const { data: isExist, isLoading } = useQuery({
+    queryKey: ["teacher"],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/teacher/${user?.email}`);
+      return data;
+    },
+  });
   if (isLoading) {
     return <div className="text-center">Loading</div>;
   }
