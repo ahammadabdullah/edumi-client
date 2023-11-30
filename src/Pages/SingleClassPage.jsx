@@ -36,7 +36,6 @@ const SingleClassPage = () => {
         }
       });
   }, [id, user?.email]);
-  console.log(isEnrolled);
   if (isLoading || loading) {
     return <Loader />;
   }
@@ -50,7 +49,6 @@ const SingleClassPage = () => {
     studentEmail: user?.email,
   };
 
-  console.log(classInfo);
   return (
     <div className="max-w-7xl mx-auto mt-5 space-y-3 mb-20 px-10 ">
       <Helmet>
