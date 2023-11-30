@@ -11,7 +11,7 @@ const Profile = () => {
       <Helmet>
         <title>Dashboard | Profile</title>
       </Helmet>
-      <div className="bg-white shadow-lg rounded-2xl w-3/5">
+      <div className="bg-white shadow-lg rounded-2xl md:w-3/5 w-3/4">
         <img
           alt="profile"
           src="https://wallpapercave.com/wp/wp11015724.jpg"
@@ -29,7 +29,7 @@ const Profile = () => {
           <p className="p-2 px-4 text-xs text-white bg-blue-500 rounded-full">
             {role && role.toUpperCase()}
           </p>
-          <p className="mt-2 text-xl font-medium text-gray-800 ">
+          <p className="mt-2 text-base md:text-xl font-medium text-gray-800 ">
             User Id: {user?.uid}
           </p>
           <div className="w-full p-2 mt-4 rounded-lg">

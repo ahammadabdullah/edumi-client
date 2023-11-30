@@ -3,6 +3,7 @@ import Logo from "../../Components/Logo";
 import useAuth from "../../Hooks/useAuth";
 import { GrLogout } from "react-icons/gr";
 import { FcHome, FcSettings } from "react-icons/fc";
+import { AiOutlineBars } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
 import MenuItem from "../../Components/Dashboard/MenuItem";
 import StudentsMenu from "../../Components/StudentsMenu/StudentsMenu";
@@ -19,8 +20,6 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const [role] = useRole();
 
-  //   For guest/host menu item toggle button
-
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
@@ -36,24 +35,24 @@ const Sidebar = () => {
   return (
     <div>
       <>
-        {/* Small Screen Navbar
-        <div className="bg-blue-100 text-gray-800 flex justify-between md:hidden">
+        {/* Small Screen Navbar */}
+        <div className="bg-blue-100 h-20 text-gray-800 flex justify-between md:hidden">
           <div>
-            <div className="block cursor-pointer p-4 font-bold">
+            <div className="block !w-20 cursor-pointer p-4 font-bold">
               <Logo />
             </div>
           </div>
 
           <button
             onClick={handleToggle}
-            className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200"
+            className="mobile-menu-button p-4 focus:outline-none focus:bg-blue-200"
           >
             <AiOutlineBars className="h-5 w-5" />
           </button>
-        </div> */}
+        </div>
         {/* Sidebar */}
         <div
-          className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-blue-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
+          className={` z-10 md:fixed  flex-col justify-between overflow-x-hidden bg-blue-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
             isActive && "-translate-x-full"
           }  md:translate-x-0  transition duration-200 ease-in-out`}
         >
@@ -66,7 +65,7 @@ const Sidebar = () => {
 
             {/* Nav Items */}
             <div className="flex flex-col justify-between flex-1 mt-6">
-              <nav>
+              <nav onClick={() => setActive(!isActive)}>
                 {role === "Student" && <StudentsMenu />}
                 {role === "Teacher" && <TeachersMenu />}
                 {role === "Admin" && <AdminMenu />}
@@ -82,11 +81,14 @@ const Sidebar = () => {
           <div>
             <hr />
 
-            <MenuItem
-              icon={FaUser}
-              label="Profile"
-              address="/dashboard/profile"
-            />
+            <span onClick={() => setActive(!isActive)}>
+              <MenuItem
+                icon={FaUser}
+                label="Profile"
+                address="/dashboard/profile"
+              />
+            </span>
+
             <MenuItem icon={FaHome} label="Home" address="/" />
             <button
               onClick={handleLogout}

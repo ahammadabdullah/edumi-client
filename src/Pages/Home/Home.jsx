@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import Faq from "./Faq";
 import WhyUs from "./WhyUs";
 import BeInstructor from "./BeInstructor";
+import NewsLetter from "./NewsLetter";
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <WhyUs />
       <BeInstructor />
       <Faq />
+      <NewsLetter />
     </div>
   );
 };

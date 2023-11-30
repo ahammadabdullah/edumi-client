@@ -13,11 +13,6 @@ const TeachOnEdumi = () => {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
-  const addRequest = async (teacherDetails) => {
-    const res = await axiosSecure.post("/teachonedumi", teacherDetails);
-    return res.data;
-  };
-
   const { mutateAsync } = useMutation({
     mutationFn: async (teacherDetails) => {
       const res = await axiosSecure.post("/teachonedumi", teacherDetails);

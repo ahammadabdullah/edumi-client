@@ -25,7 +25,7 @@ const MyEnrolledClasses = () => {
       <h3 className="text-center text-3xl">
         My Enrolled Classes {data?.length}
       </h3>
-      <div className="grid grid-cols-3 my-10">
+      <div className="grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 my-10">
         {data && data.map((item, idx) => <ClassCard item={item} key={idx} />)}
       </div>
     </div>
