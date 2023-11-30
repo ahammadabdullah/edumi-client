@@ -24,7 +24,6 @@ const TeachOnEdumi = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
     const teacherDetails = {
       userId: user?._id,
       name: data.name,

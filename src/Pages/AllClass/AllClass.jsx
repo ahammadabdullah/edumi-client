@@ -17,7 +17,6 @@ const AllClass = () => {
   });
   const { result, classCount } = data || {};
   const totalPage = Math.ceil(classCount / 10);
-  console.log(totalPage);
   if (isLoading) {
     return <Loader />;
   }

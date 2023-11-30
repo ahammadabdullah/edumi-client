@@ -21,7 +21,6 @@ const AddClass = () => {
       status: "pending",
     };
     const { data: res } = await axiosSecure.post("/addclass", info);
-    console.log(res);
     if (res.insertedId) {
       toast.success("Class Added Successfully");
       reset();

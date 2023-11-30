@@ -20,7 +20,6 @@ const Login = () => {
       const res = await saveUser(result.user);
       toast.success("Successfully logged in");
       navigate(location?.state ? location.state : "/home");
-      console.log(res);
     } catch (error) {
       toast.error(error.message);
     }

@@ -15,9 +15,7 @@ const AllUsers = () => {
     },
   });
   const handleMakeAdmin = async (email) => {
-    console.log(email);
     const { data } = await axiosSecure.put(`/make-admin/${email}`);
-    console.log(data);
     if (data.modifiedCount) {
       toast.success("Updated Successfully");
     } else {

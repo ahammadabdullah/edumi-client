@@ -24,7 +24,6 @@ const TerModal = ({ isOpen, closeModal, id }) => {
       studentEmail: user?.email,
     };
     const { data: res } = await axiosSecure.post("/ter", report);
-    console.log(res);
     if (res.insertedId) {
       toast.success("Report Submitted Successfully");
       closeModal();

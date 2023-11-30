@@ -11,16 +11,16 @@
 
 ## Packages
 
-- Tanstack/react-table used for creating tables
-- Tanstack/react-query used for data caching
-- Framer-motion & react spring used for animation
+- Stripe used as a payment processor and provider.
+- jsPDF used for generating invoice pdfs.
+- Tanstack/react-query & mutation used for data caching
+- AOS for animation
 - React helmet used for dynamic title
-- Uuid used for generating unique identifier.
 - JWT used for securing the APIs
 - Axios used for data fetching
+- Axios Interceptor used to intercept all requests .
 - Firebase used for user authentication and frontend deployment
-- Flowbite-react used for getting amazing react components.
-- lottie-react used for lottie gif animations.
-- momentjs used for getting time.
+- Flowbite-react & material ui used for getting amazing react components.
 - React hot toast used for Simple toast.
-- sweetalert2 used for confirmation modal
+- Headless UI used for confirmation modal
+- swiper js used for swiping carousel.

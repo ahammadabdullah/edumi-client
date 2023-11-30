@@ -42,7 +42,6 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
       const loggedUser = { email: userEmail };
-      console.log(currentUser);
       const url = "/jwt";
       if (currentUser) {
         axiosPublic

@@ -21,7 +21,6 @@ const MySingleClassPage = () => {
     queryKey: ["assignments"],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/assignments/${id}`);
-      console.log(data);
       return data;
     },
   });
@@ -36,7 +35,6 @@ const MySingleClassPage = () => {
     queryKey: ["assignment"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/students/assignments/${id}`);
-      console.log(res.data);
       return res.data;
     },
   });
@@ -52,9 +50,7 @@ const MySingleClassPage = () => {
       description,
       deadLine,
     };
-    console.log(info);
     const { data } = await axiosSecure.post("/assignments", info);
-    console.log(data);
     if (data.insertedId) {
       toast.success("Assignment added successfully");
     } else {

@@ -43,11 +43,9 @@ const CheckoutForm = ({ classInfo, closeModal, refetch }) => {
     });
 
     if (error) {
-      console.log("error", error);
       setCardError(error.message);
     } else {
       setCardError("");
-      console.log("payment method", paymentMethod);
     }
 
     setProcessing(true);
@@ -64,11 +62,8 @@ const CheckoutForm = ({ classInfo, closeModal, refetch }) => {
       });
 
     if (confirmError) {
-      console.log(confirmError);
       setCardError(confirmError.message);
     }
-
-    console.log("payment intent", paymentIntent);
 
     if (paymentIntent.status === "succeeded") {
       const paymentInfo = {
@@ -83,7 +78,6 @@ const CheckoutForm = ({ classInfo, closeModal, refetch }) => {
         refetch();
         navigate("/dashboard/my-orders");
       } catch (err) {
-        console.log(err);
         toast.error(err.message);
       } finally {
         setProcessing(false);

@@ -12,10 +12,8 @@ const TeacherRequests = () => {
       return res;
     },
   });
-  console.log(data);
   const handleApprove = async (email) => {
     const { data } = await axiosSecure.put(`/teacherrequests/${email}`);
-    console.log(data);
     if (data === "updated") {
       toast.success("Updated Successfully");
     } else {

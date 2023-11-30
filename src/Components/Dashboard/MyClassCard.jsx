@@ -25,9 +25,7 @@ const MyClassCard = ({ item, refetch }) => {
     setUpdateIsOpen(true);
   }
   const handleDelete = async () => {
-    console.log("delete", _id);
     const { data } = await axiosSecure.delete(`/myclasses/${_id}`);
-    console.log(data);
     refetch();
     closeModal();
   };
@@ -38,7 +36,6 @@ const MyClassCard = ({ item, refetch }) => {
     const description = form.description.value;
     const price = form.price.value;
     const image = form.image.value;
-    console.log(title, description, price, image);
     const info = {
       title,
       description,
@@ -46,7 +43,6 @@ const MyClassCard = ({ item, refetch }) => {
       image,
     };
     const { data } = await axiosSecure.put(`/myclasses/${_id}`, info);
-    console.log(data);
     if (data.modifiedCount) {
       toast.success("Updated Successfully");
       closeUpdateModal();
@@ -90,7 +86,7 @@ const MyClassCard = ({ item, refetch }) => {
           Update
         </button>
         <button
-          disabled={status === "pending"}
+          disabled={status === "pending" || status === "rejected"}
           onClick={handleSeeDetails}
           className="py-2 px-3 disabled:cursor-not-allowed disabled:hover:bg-blue-500 disabled:hover:text-white rounded bg-blue-500 hover:bg-blue-200 text-white hover:text-blue-500"
         >

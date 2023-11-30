@@ -22,7 +22,6 @@ const ClassDetails = () => {
     queryKey: ["assignment"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/students/assignments/${id}`);
-      console.log(res.data);
       return res.data;
     },
   });
@@ -30,7 +29,6 @@ const ClassDetails = () => {
     queryKey: ["isAssignmentSubmitted"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/submittedAssignments/${id}`);
-      console.log(res.data);
       return res.data;
     },
   });
@@ -42,7 +40,6 @@ const ClassDetails = () => {
       studentEmail: user?.email,
     };
     const { data } = await axiosSecure.post("/student/submitAssignment", info);
-    console.log(data);
     if (data.insertedId) {
       toast.success("Submitted Successfully");
     } else {
