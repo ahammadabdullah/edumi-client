@@ -18,7 +18,11 @@ const WhyUs = () => {
       <div className="max-w-7xl mx-auto pt-20 pb-20">
         <h3 className="text-3xl text-center font-semibold pb-10"> Why Us ?</h3>
         <div className="flex flex-col items-center justify-center gap-20 md:flex-row">
-          <div className="md:w-1/2 flex flex-col items-end  justify-center gap-10 mx-auto">
+          <div
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            className="md:w-1/2 flex flex-col items-end  justify-center gap-10 mx-auto"
+          >
             <div className="bg-white rounded w-fit p-8">
               <div className="flex items-center gap-8">
                 <div className="bg-blue-200 flex items-center rounded-full p-5">
@@ -62,7 +66,11 @@ const WhyUs = () => {
               </div>
             </div>
           </div>
-          <div className="md:w-1/2 rounded hidden md:block h-[530px] md:pr-10">
+          <div
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            className="md:w-1/2 rounded hidden md:block h-[530px] md:pr-10"
+          >
             <img className="h-full rounded" src={about} alt="" />
           </div>
         </div>

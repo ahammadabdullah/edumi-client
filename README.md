@@ -1,8 +1,26 @@
-# React + Vite
+# live link: https://edumi-453a2.web.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Community Food Share Website
 
-Currently, two official plugins are available:
+## Tech Stack:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- MongoDB
+- expressjs
+- NodeJS
+
+## Packages
+
+- Tanstack/react-table used for creating tables
+- Tanstack/react-query used for data caching
+- Framer-motion & react spring used for animation
+- React helmet used for dynamic title
+- Uuid used for generating unique identifier.
+- JWT used for securing the APIs
+- Axios used for data fetching
+- Firebase used for user authentication and frontend deployment
+- Flowbite-react used for getting amazing react components.
+- lottie-react used for lottie gif animations.
+- momentjs used for getting time.
+- React hot toast used for Simple toast.
+- sweetalert2 used for confirmation modal

@@ -4,11 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import Loader from "../../Components/Loader";
 
 const AllClasses = () => {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
-  const { data, refetch } = useQuery({
+  const { data, refetch, isLoading } = useQuery({
     queryKey: ["all classes "],
     queryFn: async () => {
       const res = await axiosSecure.get("/admin/allclasses");
@@ -36,12 +37,18 @@ const AllClasses = () => {
     }
     refetch();
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div>
       <Helmet>
         <title>Dashboard | All Classes</title>
       </Helmet>
-      <h3>Total Class {data?.length} </h3>
+      <h3 className="text-3xl text-center py-10">
+        Total Class {data?.length}{" "}
+      </h3>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

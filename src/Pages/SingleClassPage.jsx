@@ -5,9 +5,10 @@ import PaymentModal from "../Components/Modals/PaymentModal";
 import { useEffect, useState } from "react";
 import useAuth from "../Hooks/useAuth";
 import { Helmet } from "react-helmet";
+import Loader from "../Components/Loader";
 
 const SingleClassPage = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const [isEnrolled, setIsEnrolled] = useState(false);
   let [isOpen, setIsOpen] = useState(false);
   const closeModal = () => {
@@ -36,8 +37,8 @@ const SingleClassPage = () => {
       });
   }, [id, user?.email]);
   console.log(isEnrolled);
-  if (isLoading) {
-    return <div>Loading</div>;
+  if (isLoading || loading) {
+    return <Loader />;
   }
   const classInfo = {
     classId: item?._id,

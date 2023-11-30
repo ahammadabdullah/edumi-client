@@ -3,6 +3,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import userIcon from "../../assets/user-icon.png";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import Loader from "../../Components/Loader";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -10,7 +11,6 @@ const AllUsers = () => {
     queryKey: ["allusers"],
     queryFn: async () => {
       const { data: res } = await axiosSecure.get("/allusers");
-      console.log(res);
       return res;
     },
   });
@@ -25,12 +25,18 @@ const AllUsers = () => {
     }
     refetch();
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div>
       <Helmet>
         <title>Dashboard | All Users</title>
       </Helmet>
-      <h3>Total Users:</h3>
+      <h3 className="text-3xl text-center py-10">
+        Total Users: {data?.length}
+      </h3>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

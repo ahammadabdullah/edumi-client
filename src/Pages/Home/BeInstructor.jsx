@@ -4,10 +4,14 @@ const BeInstructor = () => {
   return (
     <div className="max-w-7xl mx-auto my-20 px-6">
       <div className="flex flex-col md:flex-row justify-center items-center gap-10">
-        <div className="md:w-1/2  flex md:justify-end ">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="2000"
+          className="md:w-1/2  flex md:justify-end "
+        >
           <img className="lg:w-[80%] rounded-md" src={image} alt="" />
         </div>
-        <div className="md:w-1/2">
+        <div data-aos="fade-up" data-aos-duration="2000" className="md:w-1/2">
           <h3 className="text-3xl lg:mb-6">Become An Instructor</h3>
           <p className="md:w-2/3 lg:mb-10 mb-3">
             At Edumi, we believe in the power of knowledge-sharing, and we

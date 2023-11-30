@@ -6,10 +6,10 @@ const Faq = () => {
         Frequently Asked Questions
       </h3>
       <div className="flex  justify-center  flex-col lg:flex-row items-center px-10 space-y-10">
-        <div className="lg:w-1/2">
+        <div data-aos="fade-up" data-aos-duration="2000" className="lg:w-1/2">
           <img src={image} alt="" />
         </div>
-        <div className="lg:w-1/2">
+        <div data-aos="fade-up" data-aos-duration="2000" className="lg:w-1/2">
           <div id="accordion-collapse" data-accordion="collapse">
             <h2 id="accordion-collapse-heading-1">
               <button

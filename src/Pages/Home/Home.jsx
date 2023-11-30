@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import Banner from "./Banner";
 import FeaturedClass from "./FeaturedClass";
 import { Helmet } from "react-helmet";
@@ -6,8 +6,13 @@ import Faq from "./Faq";
 import WhyUs from "./WhyUs";
 import BeInstructor from "./BeInstructor";
 import NewsLetter from "./NewsLetter";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 const Home = () => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
     <div>
       <Helmet>

@@ -135,8 +135,12 @@ const TeachOnEdumi = () => {
             <br />
             <input
               type="submit"
-              className="btn py-2 px-3 mt-10 text-white bg-blue-600"
-              value="Submit For Review"
+              className="rounded hover:bg-blue-200 hover:text-blue-500 py-2 px-3 mt-10 text-white bg-blue-600"
+              value={
+                isExist.status === "rejected"
+                  ? "Request another review"
+                  : "Submit For Review"
+              }
             />
           </form>
         </div>

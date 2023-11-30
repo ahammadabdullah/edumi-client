@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "http://localhost:3500",
+  baseURL: "https://edumi-blush.vercel.app/",
 });
 
 const useAxiosPublic = () => {

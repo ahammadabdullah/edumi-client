@@ -25,8 +25,7 @@ const TeacherRequests = () => {
   };
   const handleDecline = async (email) => {
     const { data } = await axiosSecure.delete(`/teacherrequests/${email}`);
-    console.log(data);
-    if (deletedCount) {
+    if (data?.deletedCount) {
       toast.success("Deleted Successfully");
     } else {
       toast.error("Something went wrong");
