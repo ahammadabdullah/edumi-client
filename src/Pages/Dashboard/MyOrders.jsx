@@ -42,7 +42,6 @@ const MyOrders = () => {
     const y = 80;
     rows.forEach((row) => {
       pdfDoc.text(row, 200, y);
-      // y += 10;
     });
 
     const footer = "Thanks for being with Edumi";
