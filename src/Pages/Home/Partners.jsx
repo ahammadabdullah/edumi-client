@@ -12,7 +12,7 @@ const Partners = () => {
             data-aos-duration="2000"
             className="flex flex-col md:flex-row items-center justify-center "
           >
-            <img className="h-[150px]" src={image2} alt="" />
+            <img className="h-[150px] w-[200px]" src={image2} alt="" />
             <h3 className=" md:w-1/2 px-10">
               Udemy, a renowned online learning platform, collaborates with us
               to offer a diverse range of courses. Together, we provide learners
@@ -25,7 +25,7 @@ const Partners = () => {
             data-aos-duration="2000"
             className="flex flex-col md:flex-row items-center justify-center  "
           >
-            <img className="h-[150px]" src={image1} alt="" />
+            <img className="h-[150px] w-[200px]" src={image1} alt="" />
             <h3 className=" md:w-1/2 px-10">
               Coursera, a renowned online learning platform, collaborates with
               us to empower learners globally. Together, we bring a myriad of
@@ -39,7 +39,7 @@ const Partners = () => {
             data-aos-duration="2000"
             className="flex flex-col md:flex-row items-center justify-center "
           >
-            <img className="h-[150px]" src={image3} alt="" />
+            <img className="h-[150px] w-[200px]" src={image3} alt="" />
             <h3 className=" md:w-1/2 px-10">
               Microsoft, a technology giant, joins forces with us to catalyze
               digital transformation. Through our partnership, we leverage
