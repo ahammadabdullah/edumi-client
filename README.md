@@ -1,6 +1,6 @@
 # live link: https://edumi-453a2.web.app/
 
-# Community Food Share Website
+# Edumi Website | A platform to learn.
 
 ## Tech Stack:
 
