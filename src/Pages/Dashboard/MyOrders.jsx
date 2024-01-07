@@ -14,7 +14,43 @@ const MyOrders = () => {
       return res.data;
     },
   });
+  const handleDownloadInvoice = (item) => {
+    const pdfDoc = new jsPDF("p", "pt");
+    // Add a title
+    const title = "Invoice";
+    pdfDoc.setFontSize(20);
+    const textWidth = pdfDoc.getStringUnitWidth(title) * 20;
+    const pageWidth = pdfDoc.internal.pageSize.getWidth();
+    const xPos = (pageWidth - textWidth) / 2;
+    pdfDoc.text(xPos, 40, title);
 
+    // Add a table header
+    pdfDoc.setFontSize(12);
+    const headers = ["Title :", "Instructor :", "Transaction Id :", "Price :"];
+    pdfDoc.text(headers, 20, 80);
+
+    // Add table rows
+    const rows = [
+      [
+        `${item.title}`,
+        `${item.name}`,
+        `${item.transactionId}`,
+        `${item.price}`,
+      ],
+    ];
+
+    const y = 80;
+    rows.forEach((row) => {
+      pdfDoc.text(row, 200, y);
+    });
+
+    const footer = "Thanks for being with Edumi";
+    pdfDoc.setFontSize(16);
+    const footerTextWidth = pdfDoc.getStringUnitWidth(footer) * 16;
+    const footerXPos = (pageWidth - footerTextWidth) / 2;
+    pdfDoc.text(footerXPos, 160, footer);
+    pdfDoc.save("invoice.pdf");
+  };
   return (
     <div>
       <Helmet>
